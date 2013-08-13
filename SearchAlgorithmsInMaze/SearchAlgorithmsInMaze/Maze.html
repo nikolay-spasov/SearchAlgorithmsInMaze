@@ -2,6 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title></title>
+    <style>
+        body, canvas {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
     <canvas id="maze" width="640" height="480" style="border: 1px solid black;"></canvas>
@@ -11,6 +17,7 @@
             <option value="12 x 16">12 x 16</option>
             <option value="24 x 32" selected="selected">24 x 32</option>
             <option value="48 x 64">48 x 64</option>
+            <option value="96 x 128">96 x 128</option>
         </select>
     </div>
     <div><a href="#" id="bfs">Solve BFS</a></div>

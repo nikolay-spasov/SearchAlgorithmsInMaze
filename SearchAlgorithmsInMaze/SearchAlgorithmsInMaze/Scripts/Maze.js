@@ -77,6 +77,14 @@
             unvisitedCellsCount = rows * cols;
             generated = false;
 
+            if (rows >= 48 && cols >= 64) {
+                canvas.width = 1024;
+                canvas.height = 768;
+            } else {
+                canvas.width = 640;
+                canvas.height = 480;
+            }
+
             cellSize = Math.round(canvas.width / cols);
 
             generateMaze();
@@ -133,7 +141,8 @@
         unvisitedCellsCount--;
 
         if (mazeGenerationInterval) clearMazeIntervals();
-        
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
         mazeGenerationInterval = setInterval(function () {
             if (unvisitedCellsCount > 0) {
                 var nbors = getNeighbors(current);
@@ -143,21 +152,26 @@
                     var chosen = nbors.shift();
                     stack.push(current);
                     removeWallsBetween(current, chosen);
+                    maze[current.row][current.col].draw(ctx);
+                    maze[chosen.row][chosen.col].draw(ctx);
                     current = chosen;
                     visited[current.row][current.col] = true;
                     unvisitedCellsCount--;
-                    draw();
+                    
+                    //draw();
                 } else if (stack.length > 0) {
                     current = stack.pop();
                 } else {
                     current = getFirstNotVisitedCell();
                     visited[notVisited.row][notVisited.col] = true;
                     unvisitedCellsCount--;
+                    maze[current.row][current.col].draw(ctx);
                     draw();
                 }
             } else {
                 clearInterval(mazeGenerationInterval);
                 generated = true;
+                maze[current.row][current.col].draw(ctx);
                 draw();
             }
         }, 10);
