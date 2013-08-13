@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <canvas id="maze" width="640" height="480" style="border: 1px solid black;"></canvas>
+    <div>
+        <a href="#" id="generate-btn">Generate</a>
+        <select id="maze-size">
+            <option value="12 x 16">12 x 16</option>
+            <option value="24 x 32" selected="selected">24 x 32</option>
+            <option value="48 x 64">48 x 64</option>
+        </select>
+    </div>
+    <div><a href="#" id="bfs">Solve BFS</a></div>
+    <div><a href="#" id="dfs">Solve DFS</a></div>
+    <script src="Scripts/MazeGenerator.js"></script>
+</body>
+</html>
